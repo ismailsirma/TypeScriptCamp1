@@ -27,7 +27,7 @@ const person = {
 //person.role[1] = 10
 //person.role = [1, 'admin']
 
-let favoriteActivities: string[]
+let favoriteActivities: any[]
 favoriteActivities = ['Sports']
 
 console.log(person.name)
