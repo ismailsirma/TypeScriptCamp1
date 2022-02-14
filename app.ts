@@ -1,8 +1,11 @@
+type Combinable = number | string;
+type ConversionDescriptor = 'as-number' | 'as-text'
+
 function combine(
-    input1: number | string, 
-    input2: number | string,
+    input1: Combinable, 
+    input2: Combinable,
     // allow only two possible value strings:
-    resultConversion: 'as-number' | 'as-text'
+    resultConversion: ConversionDescriptor
     ){
     let result;
     if(typeof input1 === 'number' && typeof input2 === 'number' || resultConversion === 'as-number'){
