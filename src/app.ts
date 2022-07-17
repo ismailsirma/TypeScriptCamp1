@@ -31,8 +31,24 @@ class TechDepartment extends Department {
 }
 
 class ProductDepartment extends Department {
+    private lastProduct: string
+
+    get mostRecentProduct() {
+        if(this.lastProduct)
+            return this.lastProduct
+        
+        throw new Error('No product found.')
+    }
+
+    set mostRecentProduct(value: string) {
+        if (!value)
+            throw new Error('Please pass vaild input')
+        this.addProduct(value)
+    }
+
     constructor(id: string, private products: string[]) {
         super(id, 'Product')
+        this.lastProduct = products[0]
     }
 
     // overriding base method
@@ -46,6 +62,7 @@ class ProductDepartment extends Department {
 
     addProduct(text: string) {
         this.products.push(text)
+        this.lastProduct = text
     }
 
     printProducts() {
@@ -63,7 +80,11 @@ tech.printEmployeeInformation()
 console.log(tech)
 
 const productDep = new ProductDepartment('Dep2', [])
+
+productDep.mostRecentProduct = 'Orange juice'
 productDep.addProduct('Apple juice')
+console.log(productDep.mostRecentProduct)
+
 productDep.addEmployee('Ismail')
 productDep.addEmployee('Erdem')
 productDep.printProducts()
