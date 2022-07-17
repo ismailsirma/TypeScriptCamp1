@@ -22,12 +22,40 @@ class Department {
     }
 }
 
-const tech = new Department('Dep1','Tech');
+class TechDepartment extends Department {
+    admins: string[]
+    constructor(id: string, admins: string[]) {
+        super(id, 'Tech')
+        this.admins = admins
+    }
+}
+
+class ProductDepartment extends Department {
+    constructor(id: string, private products: string[]) {
+        super(id, 'Product')
+    }
+
+    addProduct(text: string) {
+        this.products.push(text)
+    }
+
+    printProducts() {
+        console.log(this.products)
+    }
+}
+
+const tech = new TechDepartment('Dep1', ['Ismail']);
 tech.addEmployee('Ismail')
 tech.addEmployee('Erdem')
 
 tech.describe()
 tech.printEmployeeInformation()
+
+console.log(tech)
+
+const productDep = new ProductDepartment('Dep2', [])
+productDep.addProduct('Apple juice')
+productDep.printProducts()
 
 // this keyword not works with passing a method pointer into an object not works 
 // without proving info about this keyword
