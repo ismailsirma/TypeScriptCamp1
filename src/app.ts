@@ -1,7 +1,7 @@
 class Department {
     //private id: string
     //private name: string
-    private employees: string[] = []
+    protected employees: string[] = []
 
     constructor(private readonly id: string, public name: string) {
         //this.name = n
@@ -35,6 +35,15 @@ class ProductDepartment extends Department {
         super(id, 'Product')
     }
 
+    // overriding base method
+    addEmployee(employee: string): void {
+        if (employee === 'Ismail') {
+            return
+        }
+        // protected variables are reachable inside extended classes
+        this.employees.push(employee)
+    }
+
     addProduct(text: string) {
         this.products.push(text)
     }
@@ -55,7 +64,10 @@ console.log(tech)
 
 const productDep = new ProductDepartment('Dep2', [])
 productDep.addProduct('Apple juice')
+productDep.addEmployee('Ismail')
+productDep.addEmployee('Erdem')
 productDep.printProducts()
+productDep.printEmployeeInformation()
 
 // this keyword not works with passing a method pointer into an object not works 
 // without proving info about this keyword
