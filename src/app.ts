@@ -1,10 +1,16 @@
 class Department {
+    static fiscalYear = 2022
     //private id: string
     //private name: string
     protected employees: string[] = []
 
     constructor(private readonly id: string, public name: string) {
         //this.name = n
+        //console.log(Department.fiscalYear)
+    }
+
+    static createEmployee(name: string) {
+        return {name: name}
     }
 
     describe(this: Department) {
@@ -69,6 +75,9 @@ class ProductDepartment extends Department {
         console.log(this.products)
     }
 }
+
+const employee1 = Department.createEmployee('Ismail')
+console.log(employee1, Department.fiscalYear)
 
 const tech = new TechDepartment('Dep1', ['Ismail']);
 tech.addEmployee('Ismail')
