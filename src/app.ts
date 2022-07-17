@@ -39,6 +39,7 @@ class TechDepartment extends Department {
 
 class ProductDepartment extends Department {
     private lastProduct: string
+    private static instance: ProductDepartment
 
     get mostRecentProduct() {
         if(this.lastProduct)
@@ -53,9 +54,17 @@ class ProductDepartment extends Department {
         this.addProduct(value)
     }
 
-    constructor(id: string, private products: string[]) {
+    private constructor(id: string, private products: string[]) {
         super(id, 'Product')
         this.lastProduct = products[0]
+    }
+
+    static getInstance() {
+        if (ProductDepartment.instance)
+            return this.instance
+        
+        this.instance = new ProductDepartment('dep2', [])
+        return this.instance
     }
 
     describe() {
@@ -93,7 +102,8 @@ tech.printEmployeeInformation()
 
 console.log(tech)
 
-const productDep = new ProductDepartment('Dep2', [])
+//const productDep = new ProductDepartment('Dep2', [])
+const productDep = ProductDepartment.getInstance()
 
 productDep.mostRecentProduct = 'Orange juice'
 productDep.addProduct('Apple juice')
