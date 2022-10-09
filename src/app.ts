@@ -112,3 +112,21 @@ function moveAnimal(animal: Animal) {
 }
 
 moveAnimal({type: 'bird', flyingSpeed: 10})
+
+// Type Casting
+
+// Some value could not be detected bt TS
+
+//const paragraph = document.querySelector('p')
+//const paragraph = document.getElementById('message-output')
+
+// we can cast the type of the html element to another type (HTMLInputElement)
+//const userInputElement = <HTMLInputElement> document.getElementById('user-input')
+
+// 2nd way to cast the type
+// ! means expression to the left should never return null
+//const userInputElement = document.getElementById('user-input')! as HTMLInputElement
+
+const userInputElement = document.getElementById('user-input')
+if(userInputElement)
+    (userInputElement as HTMLInputElement).value = 'Hi there!'
