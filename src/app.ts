@@ -148,3 +148,18 @@ const errorBag: ErrorContainer = {
     email: 'Not a valid email!',
     //id: 4 //number value is not allowed
 }
+
+// Function Overload
+
+function addv2(a: number, b: number): number
+function addv2(a: string, b: string): string
+function addv2(a: string, b: number): string
+function addv2(a: number, b: string): string
+function addv2(a: Combinable, b: Combinable) {
+    if (typeof a === 'string' || typeof b === 'string')
+        return a.toString() + b.toString()
+    return a + b
+}
+
+const result2 = addv2('Ismail', 'Sirma')
+result2.split(' ')
