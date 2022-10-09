@@ -163,3 +163,18 @@ function addv2(a: Combinable, b: Combinable) {
 
 const result2 = addv2('Ismail', 'Sirma')
 result2.split(' ')
+
+// Optional Chaining
+
+// we dont know if an object has some property
+const fetchUserdate = {
+    id: 'u1',
+    name: 'Erdem',
+    job: { title: 'CEO', description: 'Company'}
+}
+
+// avoid runtime error if a property does not exist
+//console.log(fetchUserdate.job && fetchUserdate.job.title)
+
+// safely nested properties and objects
+console.log(fetchUserdate?.job?.title)
