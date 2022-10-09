@@ -70,3 +70,43 @@ function extractAndConvert<T extends object, U extends keyof T>(obj: T, key: U) 
 }
 
 console.log(extractAndConvert({name: 'Ismail'}, 'name'))
+
+
+// GENERIC CLASSES
+
+// works better with primitive types 
+// it is better not to use reference types or objects (bad practice)
+class DataStorage<T extends string | number | boolean> {
+    private data: T[] = []
+
+    addItem(item: T) {
+        this.data.push(item)
+    }
+
+    removeItem(item: T) {
+        if (this.data.indexOf(item) === -1) {
+            return
+        }
+        this.data.splice(this.data.indexOf(item), 1)
+    }
+
+    getItems() {
+        return [...this.data]
+    }
+}
+
+const textStorage = new DataStorage<string>()
+textStorage.addItem('Ismail')
+textStorage.addItem('Erdem')
+textStorage.removeItem('Ismail')
+console.log(textStorage.getItems())
+
+const numberStorage = new DataStorage<number>()
+
+const objStorage = new DataStorage<object>()
+const ismailObj = {name: 'Ismail'}
+objStorage.addItem(ismailObj)
+objStorage.addItem({name: 'Erdem'})
+// passing object by reference
+objStorage.removeItem(ismailObj)
+console.log(objStorage.getItems())
