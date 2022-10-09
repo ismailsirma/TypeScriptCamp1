@@ -59,3 +59,14 @@ function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
 
 console.log(countAndDescribe('Hi there!'))
 console.log(countAndDescribe(['F1', 'Football']))
+
+
+// keyof Constraint
+
+// keyof Keyword is used to represents that
+// certain object type is a property of another object type
+function extractAndConvert<T extends object, U extends keyof T>(obj: T, key: U) {
+    return 'Value: ' + obj[key]
+}
+
+console.log(extractAndConvert({name: 'Ismail'}, 'name'))
