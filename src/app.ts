@@ -178,3 +178,15 @@ const fetchUserdate = {
 
 // safely nested properties and objects
 console.log(fetchUserdate?.job?.title)
+
+
+// Nullish Coalescing
+
+const userInput = null
+
+// OR OERATOR || check existince
+
+// check only if it is null or undefined (not an empty string)
+// if not null or undefined use the value after question mark
+const storedData = userInput ?? 'DEFAULT'
+console.log(storedData)
