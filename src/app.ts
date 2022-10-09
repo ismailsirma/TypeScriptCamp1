@@ -40,3 +40,22 @@ function mergev2<T extends object, U extends object>(objA: T, objB: U) {
 }
 
 const mergedObj2 = mergev2<{name:string}, {age: number}>({name: 'Erdem'}, {age: 30})
+
+// Another Generic Function
+
+interface Lengthy {
+    length: number
+}
+
+function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
+    let descriptionText = 'Got no value.'
+    if (element.length === 1) { 
+        descriptionText = 'Got 1 element'
+    } else if (element.length > 1) {
+        descriptionText = 'Got ' + element.length + ' elements.'
+    }
+    return [element, descriptionText]
+}
+
+console.log(countAndDescribe('Hi there!'))
+console.log(countAndDescribe(['F1', 'Football']))
