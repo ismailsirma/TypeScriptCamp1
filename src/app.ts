@@ -23,6 +23,7 @@ type Numeric = number | boolean
 
 type Universal = Combinable & Numeric
 
+// TYPE GUARDS 
 function addCombinable(a: Combinable, b: Combinable) {
     // type guard for type check and change at runtime
     if(typeof a === 'string' || typeof b === 'string') {
@@ -79,3 +80,35 @@ function useVehicle(vehicle: Vehicle) {
 
 useVehicle(v1)
 useVehicle(v2)
+
+// Discriminated Unions
+
+// create an extra literal property called type
+// to narrow down value stored in type
+interface Bird {
+    type: 'bird'
+    flyingSpeed: number
+}
+
+interface Horse {
+    type: 'horse'
+    runningSpeed: number
+}
+
+type Animal = Bird | Horse
+
+function moveAnimal(animal: Animal) {
+    // type guards leading more code due to increasing types, require property checks it is cumbersome
+    // we want to eliminate mistyping with property names
+    let speed
+    switch (animal.type) {
+        case 'bird':
+            speed = animal.flyingSpeed
+            break
+        case 'horse':
+            speed = animal.runningSpeed
+    }
+    console.log('Moving at speed: ' + speed)
+}
+
+moveAnimal({type: 'bird', flyingSpeed: 10})
