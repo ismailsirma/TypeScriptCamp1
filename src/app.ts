@@ -112,3 +112,28 @@ objStorage.addItem({name: 'Erdem'})
 objStorage.removeItem(ismailObj)
 console.log(objStorage.getItems())
 */
+
+// Other Utility Types that are GENERIC
+
+// PARTIAL
+interface CourseGoal {
+    title: string
+    description: string
+    completeUntil: Date
+}
+
+function createCourseGoal(title: string, description: string, date: Date): CourseGoal {
+    let courseGoal: Partial<CourseGoal> = {}
+    courseGoal.title = title
+    courseGoal.description = description
+    courseGoal.completeUntil = date
+    return courseGoal as CourseGoal
+}
+
+// Readonly
+// this type makes object/array locked
+// adding or removing property is not allowed
+
+const names2: Readonly<string[]> = ['Ismail', 'Erdem']
+names.push('SIRMA')
+names.pop()
