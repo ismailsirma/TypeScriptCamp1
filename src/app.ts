@@ -103,6 +103,7 @@ console.log(textStorage.getItems())
 
 const numberStorage = new DataStorage<number>()
 
+/* bad practice to use generics with objects
 const objStorage = new DataStorage<object>()
 const ismailObj = {name: 'Ismail'}
 objStorage.addItem(ismailObj)
@@ -110,3 +111,4 @@ objStorage.addItem({name: 'Erdem'})
 // passing object by reference
 objStorage.removeItem(ismailObj)
 console.log(objStorage.getItems())
+*/
