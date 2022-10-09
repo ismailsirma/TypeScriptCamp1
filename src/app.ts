@@ -130,3 +130,21 @@ moveAnimal({type: 'bird', flyingSpeed: 10})
 const userInputElement = document.getElementById('user-input')
 if(userInputElement)
     (userInputElement as HTMLInputElement).value = 'Hi there!'
+
+// Index Properties
+
+// properties for object that contains value types
+interface ErrorContainer { 
+    // {email: 'Not a valid email', username: 'Must start'}
+
+    // define an index type 
+    // every property getting added 
+    // should have property name as type string
+    // should have property value as type string
+    [prop: string]: string
+}
+
+const errorBag: ErrorContainer = {
+    email: 'Not a valid email!',
+    //id: 4 //number value is not allowed
+}
