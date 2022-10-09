@@ -30,3 +30,13 @@ function merge<T, U>(objA: T, objB: U) {
 
 const mergedObj = merge<{name:string}, {age: number}>({name: 'Erdem'}, {age: 30})
 console.log(mergedObj)
+
+// Generic CONSTRAINTS
+
+// set constraint to any certain type with extend keyword
+function mergev2<T extends object, U extends object>(objA: T, objB: U) {
+
+    return Object.assign(objA, objB)
+}
+
+const mergedObj2 = mergev2<{name:string}, {age: number}>({name: 'Erdem'}, {age: 30})
