@@ -35,3 +35,26 @@ class Humanv2 {
 
 const hum = new Humanv2()
 console.log(hum) 
+
+
+// Build More Useful Decorators
+
+function WithTemplate(template: string, hookId: string) {
+    // _ is the arguement that will be ignored
+    return function(constructor: any) {
+        const hookEl = document.getElementById(hookId)
+        const p = new constructor()
+        if (hookEl) {
+            hookEl.innerHTML = template
+            hookEl.querySelector('h1')!.textContent = p.name
+        }
+    }
+}
+
+@WithTemplate('<h1>My Test Object</h1>', 'app')
+class Test {
+    name = 'Ismail'
+    constructor(){
+        console.log('creating a test obj...')
+    }
+}
