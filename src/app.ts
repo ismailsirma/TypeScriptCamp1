@@ -147,3 +147,35 @@ class Product2 {
         return this._price * (1 + tax)
     }
 }
+
+// Return a Class in a Class Decorator
+
+function WithTemplatev2(template: string, hookId: string) {
+    // _ is the arguement that will be ignored
+    return function<T extends {new(...args: any[]): {name: string} }>(originalConstructor: T) {
+
+        // Return a constructor of original constructor of the class with new functionality
+        // Defining extra logic inside constructor 
+        // so it will be executed only when object is instantiated not every time (such as its definition defined)
+        // Constructor function replaces the original class with custom extra logic
+        return class extends originalConstructor {
+            constructor(..._: any[]) {
+                super()
+                console.log('Rendering template')
+                const hookEl = document.getElementById(hookId)
+                if (hookEl) {
+                    hookEl.innerHTML = template
+                    hookEl.querySelector('h1')!.textContent = this.name
+                }
+            }
+        }
+    }
+}
+@WithTemplatev2('<h1>My Person Object</h1>', 'app')
+class PersonV2 {
+    name = 'Erdem'
+
+    constructor() {
+        console.log('Creating PersonV2 object ...')
+    }
+}
