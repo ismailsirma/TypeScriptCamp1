@@ -179,3 +179,39 @@ class PersonV2 {
         console.log('Creating PersonV2 object ...')
     }
 }
+
+// Create an Autobind Decorator 
+
+// decorator function returns adjusted descriptor 
+// override the old method descriptor, replaced with new descriptor configuration
+function Autobind(target: any, methodName: string, descriptor: PropertyDescriptor) {
+    const originalMethod = descriptor.value
+    const adjDescriptor: PropertyDescriptor = {
+        configurable: true,
+        enumerable: false,
+        get() {
+            const boundFn = originalMethod.bind(this)
+            return boundFn
+        }
+    }
+    return adjDescriptor
+}
+
+// When button is clicked, execute a method on the object
+class Printer {
+    message = 'This works!'
+
+    @Autobind
+    showMessage() {
+        console.log(this.message)
+    }
+}
+
+const p = new Printer()
+const button = document.querySelector('button')!
+// v1: use bind method to refer Printer class to refer itself instead of target of the event (EventListener)
+// v1: old js way to use this keyword correctly
+//button.addEventListener('click', p.showMessage.bind(p))
+
+// v2: autobind with decorator
+button.addEventListener('click', p.showMessage)
