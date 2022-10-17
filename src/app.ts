@@ -1,7 +1,14 @@
 import express, { Request, Response, NextFunction} from 'express'
+import { json } from 'body-parser'
+
 import todoRoues from './routes/todos'
 
 const app = express()
+
+// add, register a middleware with body parser methods json method
+// parse body of all incoming requests, extract any json data
+// populate body key on data 
+app.use(json())
 
 // add routes
 app.use('/todos', todoRoues)
