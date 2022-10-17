@@ -1,10 +1,10 @@
-import { IsNotEmpty, IsNumber, IsPositive } from 'class-validator';
+//import { IsNotEmpty, IsNumber, IsPositive } from 'class-validator';
 
 export default class Product {
-	@IsNotEmpty()
+	//@IsNotEmpty()
 	title: string;
-	@IsNumber()
-	@IsPositive()
+	//@IsNumber()
+	//@IsPositive()
 	price: number;
 	
 	constructor(t: string, p:number) {
